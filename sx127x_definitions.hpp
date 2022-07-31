@@ -19,8 +19,8 @@ public:
         wnr = Bit7
     };
     MODM_FLAGS8(RegAccess)
-    
-    enum class 
+
+    enum class
     Address : uint8_t
     {
         Fifo = 0x00,
@@ -60,11 +60,11 @@ public:
     // -- Common Registers -----------------------------------------------------
 
     // -- Operation Mode Register
-    enum class 
+    enum class
     RegOpMode : uint8_t
     {
-        /// Sets device in either FSK/OOK mode (0) or LoRa mode (1) 
-        LongRangeMode = Bit7, 
+        /// Sets device in either FSK/OOK mode (0) or LoRa mode (1)
+        LongRangeMode = Bit7,
         // Bit6: AccessSharedReg
         // Bit5: Reserved
         // But4: Reserved
@@ -73,7 +73,7 @@ public:
     };
     MODM_FLAGS8(RegOpMode);
 
-    enum class 
+    enum class
     Mode : uint8_t
     {
         Sleep = 0,
@@ -83,13 +83,13 @@ public:
         FreqSynthRX = Bit2,
         RecvCont = Bit2 | Bit0,
         RecvSingle = Bit2 | Bit1,
-        ChnActvDetect = Bit2 | Bit1 | Bit0 
+        ChnActvDetect = Bit2 | Bit1 | Bit0
     };
     typedef Configuration<RegOpMode_t, Mode, Bit0 | Bit1 | Bit2> Mode_t;
 
     // // -- RF Block Registers ---------------------------------------------------
 
-    // // -- PA Config 
+    // // -- PA Config
     enum class
     RegPaConfig : uint8_t
     {
@@ -98,8 +98,8 @@ public:
     };
     MODM_FLAGS8(RegPaConfig);
 
-    typedef Value<RegPaConfig_t, Bit6 | Bit5 | Bit4>  MaxPower_t;
-    typedef Value<RegPaConfig_t, Bit3 | Bit2 | Bit1 | Bit0>  OutputPower_t;
+    typedef Value<RegPaConfig_t, 3, 4>  MaxPower_t;
+    typedef Value<RegPaConfig_t, 4, 0>  OutputPower_t;
 
     // -- PA Ramp
     enum class
@@ -107,7 +107,7 @@ public:
     {};
     MODM_FLAGS8(RegPaRamp)
 
-    typedef Value<RegPaRamp_t, Bit3 | Bit2 | Bit1 | Bit0> PaRamp_t;
+    typedef Value<RegPaRamp_t, 4, 0> PaRamp_t;
 
     // -- LNA
     enum class
@@ -115,9 +115,9 @@ public:
     {};
     MODM_FLAGS8(RegLna)
 
-    typedef Value<RegLna_t, Bit7 | Bit6 | Bit5> LnaGain_t;
-    typedef Value<RegLna_t, Bit4 | Bit3> LnaBoostLf_t;
-    typedef Value<RegLna_t, Bit1 | Bit0> LnaBoostHf_t;
+    typedef Value<RegLna_t, 3, 4> LnaGain_t;
+    typedef Value<RegLna_t, 2, 2> LnaBoostLf_t;
+    typedef Value<RegLna_t, 2, 0> LnaBoostHf_t;
 
     // // -- Lora Page Registers --------------------------------------------------
 
@@ -172,7 +172,7 @@ public:
         Fr62_5kHz = Bit2 | Bit1,
         Fr125kHz = Bit2 | Bit1 | Bit0,
         Fr250kHz = Bit3,
-        Fr500kHz = Bit3 | Bit0 
+        Fr500kHz = Bit3 | Bit0
     };
     typedef Configuration<RegModemConfig1_t, SignalBandwidth, Bit7 | Bit6 | Bit5 | Bit4> SignalBandwidth_t;
 
@@ -210,7 +210,7 @@ public:
         SF12 = 0x0c
     };
     typedef Configuration<RegModemConfig2_t, SpreadingFactor, Bit7 | Bit6 | Bit5 | Bit4> SpreadingFactor_t;
-    typedef Value<RegModemConfig2_t, Bit1 | Bit0>  SymbTimeoutMsb_t;
+    typedef Value<RegModemConfig2_t, 2, 0>  SymbTimeoutMsb_t;
 
     // -- ModemConfig3
     enum class
@@ -227,7 +227,7 @@ public:
     {};
     MODM_FLAGS8(RegDioMapping1)
 
-    typedef Value<RegDioMapping1_t, Bit7 | Bit6> Dio0Mapping_t;
+    typedef Value<RegDioMapping1_t, 2, 6> Dio0Mapping_t;
 };
 
 }
