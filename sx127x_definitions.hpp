@@ -163,18 +163,18 @@ public:
     enum class
     SignalBandwidth : uint8_t
     {
-        Fr7_8kHz = 0,
-        Fr10_4kHz = Bit0,
-        Fr15_6kHz = Bit1,
-        Fr20_8kHz = Bit1 | Bit0,
+        Fr7_8kHz   = 0,
+        Fr10_4kHz  = Bit0,
+        Fr15_6kHz  = Bit1,
+        Fr20_8kHz  = Bit1 | Bit0,
         Fr31_25kHz = Bit2,
-        Fr41_7kHz = Bit2 | Bit0,
-        Fr62_5kHz = Bit2 | Bit1,
-        Fr125kHz = Bit2 | Bit1 | Bit0,
-        Fr250kHz = Bit3,
-        Fr500kHz = Bit3 | Bit0
+        Fr41_7kHz  = Bit2 | Bit0,
+        Fr62_5kHz  = Bit2 | Bit1,
+        Fr125kHz   = Bit2 | Bit1 | Bit0,
+        Fr250kHz   = Bit3,
+        Fr500kHz   = Bit3 | Bit0
     };
-    typedef Configuration<RegModemConfig1_t, SignalBandwidth, Bit7 | Bit6 | Bit5 | Bit4> SignalBandwidth_t;
+    typedef Configuration<RegModemConfig1_t, SignalBandwidth, ((Bit7 | Bit6 | Bit5 | Bit4) >> 4), 4> SignalBandwidth_t;
 
     enum class
     ErrorCodingRate : uint8_t
@@ -184,7 +184,7 @@ public:
         Cr4_7 = Bit1 | Bit0,
         Cr4_8 = Bit2
     };
-    typedef Configuration<RegModemConfig1_t, ErrorCodingRate, Bit3 | Bit2 | Bit1> ErrorCodingRate_t;
+    typedef Configuration<RegModemConfig1_t, ErrorCodingRate, ((Bit3 | Bit2 | Bit1) >> 1), 1> ErrorCodingRate_t;
 
     // -- Modem Config 2
     enum class
@@ -201,15 +201,15 @@ public:
     enum class
     SpreadingFactor : uint8_t
     {
-        SF6 = 0x06,
-        SF7 = 0x07,
-        SF8 = 0x08,
-        SF9 = 0x09,
+        SF6  = 0x06,
+        SF7  = 0x07,
+        SF8  = 0x08,
+        SF9  = 0x09,
         SF10 = 0x0a,
         SF11 = 0x0b,
         SF12 = 0x0c
     };
-    typedef Configuration<RegModemConfig2_t, SpreadingFactor, Bit7 | Bit6 | Bit5 | Bit4> SpreadingFactor_t;
+    typedef Configuration<RegModemConfig2_t, SpreadingFactor, ((Bit7 | Bit6 | Bit5 | Bit4) >> 4), 4> SpreadingFactor_t;
     typedef Value<RegModemConfig2_t, 2, 0>  SymbTimeoutMsb_t;
 
     // -- ModemConfig3
