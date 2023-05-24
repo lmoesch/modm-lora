@@ -8,8 +8,6 @@
 // #   error "Don't include this file directly, use 'sx1276.hpp' instead!"
 // #endif
 
-#include "sx127x.hpp"
-
 namespace modm
 {
 
