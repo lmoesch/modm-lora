@@ -49,6 +49,9 @@ public:
     setLowFrequencyMode();
 
     ResumableResult<void>
+    setHighFrequencyMode();
+
+    ResumableResult<void>
     setLnaGain(uint8_t gain);
 
     ResumableResult<void>
@@ -62,7 +65,7 @@ public:
     ResumableResult<void>
     setLowDataRateOptimize();
 
-    ResumableResult<void>
+    virtual ResumableResult<void>
     setOperationMode(Mode mode);
 
     ResumableResult<void>

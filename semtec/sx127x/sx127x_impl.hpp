@@ -129,6 +129,7 @@ SX127x<SpiMaster, Cs>::setLora()
 
     /// Set operation mode to LoRa mode
     shadow.regOpMode.set(RegOpMode::LongRangeMode);
+    shadow.regOpMode.reset(RegOpMode::AccessSharedReg);    
 
     RF_CALL(write(Address::OpMode, shadow.regOpMode.value));
 
@@ -147,6 +148,24 @@ SX127x<SpiMaster, Cs>::setLowFrequencyMode()
     RF_CALL(read(Address::OpMode, &((shadow.regOpMode).value), 1));
 
     shadow.regOpMode.set(RegOpMode::LowFrequencyModeOn);
+
+    RF_CALL(write(Address::OpMode, shadow.regOpMode.value));
+
+    RF_END();
+};
+
+// ----------------------------------------------------------------------------
+
+template <typename SpiMaster, typename Cs>
+ResumableResult<void>
+SX127x<SpiMaster, Cs>::setHighFrequencyMode()
+{
+    RF_BEGIN();
+
+    // Read current configuration and set LowFrequencyMode to 1
+    RF_CALL(read(Address::OpMode, &((shadow.regOpMode).value), 1));
+
+    shadow.regOpMode.reset(RegOpMode::LowFrequencyModeOn);
 
     RF_CALL(write(Address::OpMode, shadow.regOpMode.value));
 

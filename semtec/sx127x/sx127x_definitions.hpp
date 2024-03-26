@@ -65,7 +65,7 @@ public:
     {
         /// Sets device in either FSK/OOK mode (0) or LoRa mode (1)
         LongRangeMode = Bit7,
-        // Bit6: AccessSharedReg
+        AccessSharedReg = Bit6,
         // Bit5: Reserved
         // But4: Reserved
         /// Enables the high frequency driver (0) or the low frequency one (1)
